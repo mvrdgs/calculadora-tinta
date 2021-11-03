@@ -1,59 +1,31 @@
 import React, { useEffect, useState } from 'react';
+import WallForm from '../components/WallForm';
 import { calculateWallArea } from '../utils/calculatorFuncions';
 
-const wallParameters = {
-  width: '0',
-  height: '0',
-  doors: '0',
-  windows: '0',
+const formDataStructure = {
+  'Parede 1': {},
+  'Parede 2': {},
+  'Parede 3': {},
+  'Parede 4': {},
 };
 
 function Calculator() {
-  const [wallData, setWallData] = useState(wallParameters);
+  const [formData, setFormData] = useState(formDataStructure);
+  const numberOfWalls = Object.keys(formDataStructure);
 
-  useEffect(() => { console.log(wallData); }, [wallData]);
-
-  const handleChange = ({ target }) => {
-    const { id, value } = target;
-
-    setWallData({ ...wallData, [id]: value });
-  };
+  useEffect(() => { console.log(formData); }, [formData]);
 
   return (
     <div>
-      <label htmlFor="width">
-        Largura:
-        <input
-          id="width"
-          type="text"
-          onChange={handleChange}
+      { numberOfWalls.map((wall) => (
+        <WallForm
+          key={wall.trim().toLowerCase()}
+          identifier={wall}
+          setFormData={setFormData}
+          formData={formData}
         />
-      </label>
-      <label htmlFor="height">
-        Altura:
-        <input
-          id="height"
-          type="text"
-          onChange={handleChange}
-        />
-      </label>
-      <label htmlFor="windows">
-        Quantidade de janelas:
-        <input
-          id="windows"
-          type="text"
-          onChange={handleChange}
-        />
-      </label>
-      <label htmlFor="doors">
-        Quantidade de portas:
-        <input
-          id="doors"
-          type="text"
-          onChange={handleChange}
-        />
-      </label>
-      <button onClick={() => console.log(calculateWallArea(wallData))} type="button">Calcular</button>
+      )) }
+      <button onClick={() => console.log(calculateWallArea(formData))} type="button">Calcular</button>
     </div>
   );
 }
