@@ -1,11 +1,12 @@
 import React from 'react';
-import './App.css';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      teste
-    </div>
+    <Switch>
+      <Route exact path="/calculadora" render={() => 'teste'} />
+      <Route exact path="*" render={() => <Redirect to="/calculadora" />} />
+    </Switch>
   );
 }
 
