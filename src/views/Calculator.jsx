@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import WallForm from '../components/WallForm';
-import { calculateWallArea } from '../utils/calculatorFuncions';
+import { calculateTotalArea } from '../utils/calculatorFuncions';
+
+const wallParameters = {
+  width: '1',
+  height: '1',
+  windows: '0',
+  doors: '0',
+};
 
 const formDataStructure = {
-  'Parede 1': {},
-  'Parede 2': {},
-  'Parede 3': {},
-  'Parede 4': {},
+  'Parede 1': wallParameters,
+  'Parede 2': wallParameters,
+  'Parede 3': wallParameters,
+  'Parede 4': wallParameters,
 };
 
 function Calculator() {
@@ -25,7 +32,7 @@ function Calculator() {
           formData={formData}
         />
       )) }
-      <button onClick={() => console.log(calculateWallArea(formData))} type="button">Calcular</button>
+      <button onClick={() => calculateTotalArea(formData)} type="button">Calcular</button>
     </div>
   );
 }

@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { string, func, objectOf } from 'prop-types';
 
-const wallParameters = {
-  width: '0',
-  height: '0',
-  doors: '0',
-  windows: '0',
-};
-
 function WallForm(props) {
   const { identifier, setFormData, formData } = props;
-  const [wallData, setWallData] = useState(wallParameters);
+  const [wallData, setWallData] = useState(formData[identifier]);
+
+  // useEffect(() => setFormData({ ...formData, [identifier]: wallData }));
 
   useEffect(() => {
     setFormData({ ...formData, [identifier]: wallData });
@@ -30,6 +25,7 @@ function WallForm(props) {
         <input
           id="width"
           type="text"
+          value={wallData.width}
           onChange={handleChange}
         />
       </label>
@@ -38,6 +34,7 @@ function WallForm(props) {
         <input
           id="height"
           type="text"
+          value={wallData.height}
           onChange={handleChange}
         />
       </label>
@@ -46,6 +43,7 @@ function WallForm(props) {
         <input
           id="windows"
           type="text"
+          value={wallData.windows}
           onChange={handleChange}
         />
       </label>
@@ -54,6 +52,7 @@ function WallForm(props) {
         <input
           id="doors"
           type="text"
+          value={wallData.doors}
           onChange={handleChange}
         />
       </label>
