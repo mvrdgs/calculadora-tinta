@@ -41,3 +41,4 @@ Foi utilizada a biblioteca React Testing Library para aplicação de testes unit
 - [React Router](https://reactrouter.com/)
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 - [Eslint](https://eslint.org/)
+- [Stylelint](https://stylelint.io/)
