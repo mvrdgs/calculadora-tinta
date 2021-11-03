@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import Calculator from './Views/Calculator';
+import Calculator from './views/Calculator';
 
 function App() {
   return (
