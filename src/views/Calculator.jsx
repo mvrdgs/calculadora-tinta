@@ -1,32 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { roomDataSchema, errorsSchema } from '../utils/schemas';
+import validateWallParameters from '../utils/validateWallParameters';
 import DisplayResults from '../components/DisplayResults';
 import WallForm from '../components/WallForm';
 import calculateArea from '../utils/calculateArea';
 
-const wallParameters = {
-  width: '1',
-  height: '1',
-  windows: '0',
-  doors: '0',
-};
-
-const formDataStructure = {
-  'Parede 1': wallParameters,
-  'Parede 2': wallParameters,
-  'Parede 3': wallParameters,
-  'Parede 4': wallParameters,
-};
-
 function Calculator() {
-  const [formData, setFormData] = useState(formDataStructure);
-  const numberOfWalls = Object.keys(formDataStructure);
+  const [roomData, setRoomData] = useState(roomDataSchema);
+  const numberOfWalls = Object.keys(roomDataSchema);
+
+  const [errors, setErrors] = useState(errorsSchema);
 
   const [results, setResults] = useState([]);
 
-  const handleSubmit = () => {
-    const [area, cans] = calculateArea(formData);
+  useEffect(() => {
+    setErrors(errorsSchema);
 
-    setResults([area, cans]);
+    const roomDataKeys = Object.keys(roomData);
+
+    roomDataKeys.forEach((wallKey) => {
+      const error = validateWallParameters(roomData[wallKey]);
+      if (error) setErrors({ ...errors, [wallKey]: error });
+    });
+  }, [roomData]);
+
+  const checkErrors = () => {
+    const errorValues = Object.values(errors);
+    const findError = errorValues.find((error) => error !== null);
+
+    if (findError) return true;
+    return false;
+  };
+
+  const handleSubmit = () => {
+    const [area, cans] = calculateArea(roomData);
+
+    const hasErrors = checkErrors();
+
+    if (!hasErrors) setResults([area, cans]);
   };
 
   return (
@@ -35,8 +46,9 @@ function Calculator() {
         <WallForm
           key={wall.trim().toLowerCase()}
           identifier={wall}
-          setFormData={setFormData}
-          formData={formData}
+          setRoomData={setRoomData}
+          roomData={roomData}
+          error={errors[wall]}
         />
       )) }
 

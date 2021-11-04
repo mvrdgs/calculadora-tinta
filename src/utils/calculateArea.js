@@ -5,13 +5,17 @@ const predefinedAreas = {
 
 const paintCanOptions = [0.5, 2.5, 3.6, 18];
 
-const calculateWallArea = ({
+export const calculateWallArea = (width, height) => width * height;
+export const calculateDoorsArea = (doors) => (doors > 0 ? predefinedAreas.doorArea * doors : 0);
+export const calculateWindowsArea = (windows) => (windows > 0
+  ? predefinedAreas.windowArea * windows : 0);
+
+const calculateWallAreaToBePainted = ({
   width, height, doors, windows,
 }) => {
-  const windowsArea = windows > 0 ? predefinedAreas.windowArea * windows : 0;
-  const doorsArea = doors > 0 ? predefinedAreas.doorArea * doors : 0;
-
-  const wallArea = width * height;
+  const windowsArea = calculateWindowsArea(windows);
+  const doorsArea = calculateDoorsArea(doors);
+  const wallArea = calculateWallArea(width, height);
 
   const areaToBePainted = wallArea - windowsArea - doorsArea;
 
@@ -48,7 +52,10 @@ const getSuggestedPaintCans = (area) => {
 
 export default (wallsData) => {
   const walls = Object.values(wallsData);
-  const totalAreaToBePainted = walls.reduce((acc, wall) => calculateWallArea(wall) + acc, 0);
+
+  const totalAreaToBePainted = walls
+    .reduce((acc, wall) => calculateWallAreaToBePainted(wall) + acc, 0);
+
   const suggestedPaintCans = getSuggestedPaintCans(totalAreaToBePainted);
 
   return [totalAreaToBePainted.toFixed(2), suggestedPaintCans];
