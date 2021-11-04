@@ -42,3 +42,4 @@ Foi utilizada a biblioteca React Testing Library para aplicação de testes unit
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 - [Eslint](https://eslint.org/)
 - [Stylelint](https://stylelint.io/)
+- [history](https://www.npmjs.com/package/history)

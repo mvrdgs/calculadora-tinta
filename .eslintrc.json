@@ -19,7 +19,8 @@
     ],
     "rules": {
         "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/tests/**/**.jsx", "**/*.test.jsx"]}],
-        "react/no-array-index-key": 0
+        "react/no-array-index-key": 0,
+        "no-loop-func": 0
     },
     "overrides": [
         {
