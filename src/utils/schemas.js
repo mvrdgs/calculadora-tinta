@@ -1,6 +1,6 @@
 export const inputPattern = {
-  width: /^\d{0,2}(?:[.,]\d{0,2})?$/,
-  height: /^\d{0,2}(?:[.,]\d{0,2})?$/,
+  width: /^\d{0,2}(?:[.]\d{0,2})?$/,
+  height: /^\d{0,2}(?:[.]\d{0,2})?$/,
   windows: /^\d?$/,
   doors: /^\d?$/,
 };
