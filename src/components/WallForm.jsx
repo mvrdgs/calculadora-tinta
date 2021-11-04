@@ -5,8 +5,6 @@ function WallForm(props) {
   const { identifier, setFormData, formData } = props;
   const [wallData, setWallData] = useState(formData[identifier]);
 
-  // useEffect(() => setFormData({ ...formData, [identifier]: wallData }));
-
   useEffect(() => {
     setFormData({ ...formData, [identifier]: wallData });
   }, [wallData]);

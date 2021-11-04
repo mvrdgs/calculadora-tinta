@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import DisplayResults from '../components/DisplayResults';
 import WallForm from '../components/WallForm';
-import calculateTotalArea from '../utils/calculatorFuncions';
+import calculateArea from '../utils/calculateArea';
 
 const wallParameters = {
   width: '1',
@@ -20,15 +21,12 @@ function Calculator() {
   const [formData, setFormData] = useState(formDataStructure);
   const numberOfWalls = Object.keys(formDataStructure);
 
-  const [result, setResult] = useState([]);
-  const [totalArea, suggestedCans] = result;
-  const canQuantities = suggestedCans && Object.values(suggestedCans);
-  const canSizes = suggestedCans && Object.keys(suggestedCans);
+  const [results, setResults] = useState([]);
 
   const handleSubmit = () => {
-    const [area, cans] = calculateTotalArea(formData);
+    const [area, cans] = calculateArea(formData);
 
-    setResult([area, cans]);
+    setResults([area, cans]);
   };
 
   return (
@@ -41,21 +39,10 @@ function Calculator() {
           formData={formData}
         />
       )) }
+
       <button onClick={handleSubmit} type="button">Calcular</button>
 
-      { result.length > 0 && (
-      <div>
-        A área total a ser pintada será de
-        {` ${totalArea} `}
-        metros quadrados.
-        Sugerimos utilizar:
-        { canSizes.map((size, index) => (
-          <div key={size}>
-            {` ${canQuantities[index]} latas de ${size}L`}
-          </div>
-        )) }
-      </div>
-      )}
+      { results.length > 0 && <DisplayResults results={results} />}
     </div>
   );
 }
