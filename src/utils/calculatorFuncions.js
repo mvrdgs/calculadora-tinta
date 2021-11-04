@@ -5,8 +5,6 @@ const predefinedAreas = {
 
 const paintCanOptions = [0.5, 2.5, 3.6, 18];
 
-// const checkWallHeight = () => {};
-
 const calculateWallArea = ({
   width, height, doors, windows,
 }) => {
