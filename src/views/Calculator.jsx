@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { roomDataSchema, errorsSchema } from '../utils/schemas';
+import validateWallParameters from '../utils/validateWallParameters';
 import DisplayResults from '../components/DisplayResults';
 import WallForm from '../components/WallForm';
 import calculateArea from '../utils/calculateArea';
-import { roomDataSchema, errorsSchema } from '../utils/schemas';
 
 function Calculator() {
   const [roomData, setRoomData] = useState(roomDataSchema);
@@ -12,9 +13,18 @@ function Calculator() {
 
   const [results, setResults] = useState([]);
 
-  const handleSubmit = () => {
+  useEffect(() => {
     setErrors(errorsSchema);
 
+    const roomDataKeys = Object.keys(roomData);
+
+    roomDataKeys.forEach((wallKey) => {
+      const error = validateWallParameters(roomData[wallKey]);
+      if (error) setErrors({ ...errors, [wallKey]: error });
+    });
+  }, [roomData]);
+
+  const handleSubmit = () => {
     const [area, cans] = calculateArea(roomData);
 
     setResults([area, cans]);

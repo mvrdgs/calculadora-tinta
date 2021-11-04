@@ -5,16 +5,16 @@ const predefinedAreas = {
 
 const paintCanOptions = [0.5, 2.5, 3.6, 18];
 
-const calculateWallArea = (width, height) => width * height;
-const calculateWindowsArea = (windows) => (windows > 0 ? predefinedAreas.windowArea * windows : 0);
-const calculateDoorsArea = (doors) => (doors > 0 ? predefinedAreas.doorArea * doors : 0);
+export const calculateWallArea = (width, height) => width * height;
+export const calculateDoorsArea = (doors) => (doors > 0 ? predefinedAreas.doorArea * doors : 0);
+export const calculateWindowsArea = (windows) => (windows > 0
+  ? predefinedAreas.windowArea * windows : 0);
 
 const calculateWallAreaToBePainted = ({
   width, height, doors, windows,
 }) => {
   const windowsArea = calculateWindowsArea(windows);
   const doorsArea = calculateDoorsArea(doors);
-
   const wallArea = calculateWallArea(width, height);
 
   const areaToBePainted = wallArea - windowsArea - doorsArea;
