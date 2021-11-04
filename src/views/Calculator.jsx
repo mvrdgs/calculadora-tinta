@@ -42,19 +42,23 @@ function Calculator() {
 
   return (
     <div>
-      { numberOfWalls.map((wall) => (
-        <WallForm
-          key={wall.trim().toLowerCase()}
-          identifier={wall}
-          setRoomData={setRoomData}
-          roomData={roomData}
-          error={errors[wall]}
-        />
-      )) }
+      { results.length === 0 && (
+        <>
+          { numberOfWalls.map((wall) => (
+            <WallForm
+              key={wall.trim().toLowerCase()}
+              identifier={wall}
+              setRoomData={setRoomData}
+              roomData={roomData}
+              error={errors[wall]}
+            />
+          )) }
 
-      <button onClick={handleSubmit} type="button">Calcular</button>
+          <button onClick={handleSubmit} type="button">Calcular</button>
+        </>
+      )}
 
-      { results.length > 0 && <DisplayResults results={results} />}
+      { results.length > 0 && <DisplayResults results={results} setResults={setResults} />}
     </div>
   );
 }
