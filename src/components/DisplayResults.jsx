@@ -15,7 +15,7 @@ function DisplayResults(props) {
       Sugerimos utilizar:
       { canSizes.map((size, index) => (
         <div key={size}>
-          {` ${canQuantities[index]} latas de ${size}L`}
+          {` ${canQuantities[index]} ${canQuantities[index] > 1 ? 'latas' : 'lata'} de ${size}L`}
         </div>
       )) }
     </div>
