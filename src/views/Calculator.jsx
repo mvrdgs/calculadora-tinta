@@ -19,12 +19,16 @@ const formDataStructure = {
 function Calculator() {
   const [formData, setFormData] = useState(formDataStructure);
   const numberOfWalls = Object.keys(formDataStructure);
+
   const [result, setResult] = useState([]);
+  const [totalArea, suggestedCans] = result;
+  const canQuantities = suggestedCans && Object.values(suggestedCans);
+  const canSizes = suggestedCans && Object.keys(suggestedCans);
 
   const handleSubmit = () => {
-    const [area] = calculateTotalArea(formData);
+    const [area, cans] = calculateTotalArea(formData);
 
-    setResult([area]);
+    setResult([area, cans]);
   };
 
   return (
@@ -42,8 +46,14 @@ function Calculator() {
       { result.length > 0 && (
       <div>
         A área total a ser pintada será de
-        {` ${result[0]} `}
-        metros quadrados
+        {` ${totalArea} `}
+        metros quadrados.
+        Sugerimos utilizar:
+        { canSizes.map((size, index) => (
+          <div key={size}>
+            {` ${canQuantities[index]} latas de ${size}L`}
+          </div>
+        )) }
       </div>
       )}
     </div>
