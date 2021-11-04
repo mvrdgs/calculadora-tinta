@@ -1,27 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { string, func, objectOf } from 'prop-types';
-
-const inputPatternSchema = {
-  width: /^\d{0,2}(?:[.,]\d{0,2})?$/,
-  height: /^\d{0,2}(?:[.,]\d{0,2})?$/,
-  windows: /^\d?$/,
-  doors: /^\d?$/,
-};
+import { inputPattern } from '../utils/schemas';
 
 function WallForm(props) {
   const {
-    identifier, setFormData, formData, error,
+    identifier, setRoomData, roomData, error,
   } = props;
-  const [wallData, setWallData] = useState(formData[identifier]);
+  const [wallData, setWallData] = useState(roomData[identifier]);
 
   useEffect(() => {
-    setFormData({ ...formData, [identifier]: wallData });
+    setRoomData({ ...roomData, [identifier]: wallData });
   }, [wallData]);
 
   const handleChange = async ({ target }) => {
     const { id, value } = target;
 
-    if (inputPatternSchema[id].test(value)) {
+    if (inputPattern[id].test(value)) {
       setWallData({ ...wallData, [id]: value });
     }
   };
@@ -76,8 +70,8 @@ function WallForm(props) {
 
 WallForm.propTypes = {
   identifier: string,
-  setFormData: func,
-  formData: objectOf(objectOf(string)),
+  setRoomData: func,
+  roomData: objectOf(objectOf(string)),
   error: string,
 }.isRequired;
 

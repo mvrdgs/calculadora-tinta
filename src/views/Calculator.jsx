@@ -2,31 +2,11 @@ import React, { useState } from 'react';
 import DisplayResults from '../components/DisplayResults';
 import WallForm from '../components/WallForm';
 import calculateArea from '../utils/calculateArea';
-
-const wallParameters = {
-  width: '1',
-  height: '1',
-  windows: '0',
-  doors: '0',
-};
-
-const formDataSchema = {
-  'Parede 1': wallParameters,
-  'Parede 2': wallParameters,
-  'Parede 3': wallParameters,
-  'Parede 4': wallParameters,
-};
-
-const errorsSchema = {
-  'Parede 1': null,
-  'Parede 2': null,
-  'Parede 3': null,
-  'Parede 4': null,
-};
+import { roomDataSchema, errorsSchema } from '../utils/schemas';
 
 function Calculator() {
-  const [formData, setFormData] = useState(formDataSchema);
-  const numberOfWalls = Object.keys(formDataSchema);
+  const [roomData, setRoomData] = useState(roomDataSchema);
+  const numberOfWalls = Object.keys(roomDataSchema);
 
   const [errors, setErrors] = useState(errorsSchema);
 
@@ -35,7 +15,7 @@ function Calculator() {
   const handleSubmit = () => {
     setErrors(errorsSchema);
 
-    const [area, cans] = calculateArea(formData);
+    const [area, cans] = calculateArea(roomData);
 
     setResults([area, cans]);
   };
@@ -46,8 +26,8 @@ function Calculator() {
         <WallForm
           key={wall.trim().toLowerCase()}
           identifier={wall}
-          setFormData={setFormData}
-          formData={formData}
+          setRoomData={setRoomData}
+          roomData={roomData}
           error={errors[wall]}
         />
       )) }
