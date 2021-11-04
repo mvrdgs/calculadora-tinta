@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { string, func, objectOf } from 'prop-types';
 
 function WallForm(props) {
-  const { identifier, setFormData, formData } = props;
+  const {
+    identifier, setFormData, formData, error,
+  } = props;
   const [wallData, setWallData] = useState(formData[identifier]);
+
+  console.log(error);
 
   useEffect(() => {
     setFormData({ ...formData, [identifier]: wallData });
@@ -17,7 +21,7 @@ function WallForm(props) {
 
   return (
     <div>
-      { identifier }
+      <span>{ identifier }</span>
       <label htmlFor="width">
         Largura:
         <input
@@ -54,6 +58,11 @@ function WallForm(props) {
           onChange={handleChange}
         />
       </label>
+      { error && (
+        <div>
+          <span>{`*${error}`}</span>
+        </div>
+      )}
     </div>
   );
 }
@@ -62,6 +71,7 @@ WallForm.propTypes = {
   identifier: string,
   setFormData: func,
   formData: objectOf(objectOf(string)),
+  error: string,
 }.isRequired;
 
 export default WallForm;

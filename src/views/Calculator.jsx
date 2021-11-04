@@ -10,20 +10,31 @@ const wallParameters = {
   doors: '0',
 };
 
-const formDataStructure = {
+const formDataSchema = {
   'Parede 1': wallParameters,
   'Parede 2': wallParameters,
   'Parede 3': wallParameters,
   'Parede 4': wallParameters,
 };
 
+const errorsSchema = {
+  'Parede 1': null,
+  'Parede 2': null,
+  'Parede 3': null,
+  'Parede 4': null,
+};
+
 function Calculator() {
-  const [formData, setFormData] = useState(formDataStructure);
-  const numberOfWalls = Object.keys(formDataStructure);
+  const [formData, setFormData] = useState(formDataSchema);
+  const numberOfWalls = Object.keys(formDataSchema);
+
+  const [errors, setErrors] = useState(errorsSchema);
 
   const [results, setResults] = useState([]);
 
   const handleSubmit = () => {
+    setErrors(errorsSchema);
+
     const [area, cans] = calculateArea(formData);
 
     setResults([area, cans]);
@@ -37,6 +48,7 @@ function Calculator() {
           identifier={wall}
           setFormData={setFormData}
           formData={formData}
+          error={errors[wall]}
         />
       )) }
 
