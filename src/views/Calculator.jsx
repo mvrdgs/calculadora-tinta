@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import WallForm from '../components/WallForm';
-import { calculateTotalArea } from '../utils/calculatorFuncions';
+import calculateTotalArea from '../utils/calculatorFuncions';
 
 const wallParameters = {
   width: '1',
@@ -19,8 +19,13 @@ const formDataStructure = {
 function Calculator() {
   const [formData, setFormData] = useState(formDataStructure);
   const numberOfWalls = Object.keys(formDataStructure);
+  const [result, setResult] = useState([]);
 
-  useEffect(() => { console.log(formData); }, [formData]);
+  const handleSubmit = () => {
+    const [area] = calculateTotalArea(formData);
+
+    setResult([area]);
+  };
 
   return (
     <div>
@@ -32,7 +37,15 @@ function Calculator() {
           formData={formData}
         />
       )) }
-      <button onClick={() => calculateTotalArea(formData)} type="button">Calcular</button>
+      <button onClick={handleSubmit} type="button">Calcular</button>
+
+      { result.length > 0 && (
+      <div>
+        A área total a ser pintada será de
+        {` ${result[0]} `}
+        metros quadrados
+      </div>
+      )}
     </div>
   );
 }

@@ -5,7 +5,9 @@ const predefinedAreas = {
 
 // const wallPaintOptions = [0.5, 2.5, 3.6, 18];
 
-export const calculateWallArea = ({
+// const checkWallHeight = () => {};
+
+const calculateWallArea = ({
   width, height, doors, windows,
 }) => {
   const windowsArea = windows > 0 ? predefinedAreas.windowArea * windows : 0;
@@ -15,15 +17,12 @@ export const calculateWallArea = ({
 
   const areaToBePainted = wallArea - windowsArea - doorsArea;
 
-  console.log(areaToBePainted);
-
   return areaToBePainted;
 };
 
-export const calculateTotalArea = (wallsData) => {
+export default (wallsData) => {
   const walls = Object.values(wallsData);
   const totalAreaToBePainted = walls.reduce((acc, wall) => calculateWallArea(wall) + acc, 0);
-  console.log(totalAreaToBePainted.toFixed(2));
-};
 
-export const checkWallHeight = () => {};
+  return [totalAreaToBePainted.toFixed(2)];
+};
