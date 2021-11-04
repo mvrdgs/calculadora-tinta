@@ -24,10 +24,20 @@ function Calculator() {
     });
   }, [roomData]);
 
+  const checkErrors = () => {
+    const errorValues = Object.values(errors);
+    const findError = errorValues.find((error) => error !== null);
+
+    if (findError) return true;
+    return false;
+  };
+
   const handleSubmit = () => {
     const [area, cans] = calculateArea(roomData);
 
-    setResults([area, cans]);
+    const hasErrors = checkErrors();
+
+    if (!hasErrors) setResults([area, cans]);
   };
 
   return (
