@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { string, func, objectOf } from 'prop-types';
 
+const inputPatternSchema = {
+  width: /^\d{0,2}(?:[.,]\d{0,2})?$/,
+  height: /^\d{0,2}(?:[.,]\d{0,2})?$/,
+  windows: /^\d?$/,
+  doors: /^\d?$/,
+};
+
 function WallForm(props) {
   const {
     identifier, setFormData, formData, error,
   } = props;
   const [wallData, setWallData] = useState(formData[identifier]);
-
-  console.log(error);
 
   useEffect(() => {
     setFormData({ ...formData, [identifier]: wallData });
@@ -16,7 +21,9 @@ function WallForm(props) {
   const handleChange = async ({ target }) => {
     const { id, value } = target;
 
-    setWallData({ ...wallData, [id]: value });
+    if (inputPatternSchema[id].test(value)) {
+      setWallData({ ...wallData, [id]: value });
+    }
   };
 
   return (
