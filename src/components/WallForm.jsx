@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { string, func, objectOf } from 'prop-types';
 import { inputPattern } from '../utils/schemas';
+import Input from './Input';
 
 function WallForm(props) {
   const {
@@ -23,42 +24,30 @@ function WallForm(props) {
   return (
     <div>
       <span>{ identifier }</span>
-      <label htmlFor="width">
-        Largura:
-        <input
-          id="width"
-          type="text"
-          value={wallData.width}
-          onChange={handleChange}
-        />
-      </label>
-      <label htmlFor="height">
-        Altura:
-        <input
-          id="height"
-          type="text"
-          value={wallData.height}
-          onChange={handleChange}
-        />
-      </label>
-      <label htmlFor="windows">
-        Quantidade de janelas:
-        <input
-          id="windows"
-          type="text"
-          value={wallData.windows}
-          onChange={handleChange}
-        />
-      </label>
-      <label htmlFor="doors">
-        Quantidade de portas:
-        <input
-          id="doors"
-          type="text"
-          value={wallData.doors}
-          onChange={handleChange}
-        />
-      </label>
+      <Input
+        label="Largura"
+        id="width"
+        wallData={wallData}
+        handleChange={handleChange}
+      />
+      <Input
+        label="Altura"
+        id="height"
+        wallData={wallData}
+        handleChange={handleChange}
+      />
+      <Input
+        label="Quantidade de janelas"
+        id="windows"
+        wallData={wallData}
+        handleChange={handleChange}
+      />
+      <Input
+        label="Quantidade de portas"
+        id="doors"
+        wallData={wallData}
+        handleChange={handleChange}
+      />
       { error && (
         <div>
           <span>{`*${error}`}</span>
