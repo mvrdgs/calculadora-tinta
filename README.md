@@ -20,7 +20,7 @@ Foi utilizada a biblioteca React Testing Library para aplicação de testes.
 - Cada litro de tinta é capaz de pintar 5 metros quadrados
 - Piso e teto não são considerados
 - O total da área de portas e janelas não pode exceder 50% da área de cada parede
-- As paredes devem ter no mínimo 30 centímetros a mais de altura que a porta, caso possuam alguma
+- As paredes devem ter no mínimo 30 centímetros a mais de altura que portas e janelas, caso possuam alguma
 - As paredes devem ser no mínimo 30 centímetros a mais de largura que a janela, caso possuam alguma
 
 ## Requisitos do Sistema
