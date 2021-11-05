@@ -68,14 +68,29 @@ describe('1 - Testa se a aplicação retornar os valores esperados', () => {
 });
 
 describe('2 - Testa se a aplicação gera os erros corretamente', () => {
-  it('Deve informar altura inválida quando houver porta em parede com menos de 1.1 metros', () => {
+  it('Deve informar altura inválida quando houver porta em parede com menos de 2.2 metros', () => {
     const { getAllByRole, getByText } = renderTest(<Calculator />);
 
     const inputs = getAllByRole('textbox');
 
+    fireEvent.change(inputs[1], { target: { value: 2.1 } });
     fireEvent.change(inputs[3], { target: { value: 1 } });
 
     const errorMessage = getByText(/\*a parede deve ser no mínimo 30 centímetros mais alta que a porta/i);
+
+    expect(errorMessage).toBeInTheDocument();
+  });
+
+  it('Deve informar altura inválida quando houver janela em parede com menos de 1.5 metros', () => {
+    const { getAllByRole, getByText } = renderTest(<Calculator />);
+
+    const inputs = getAllByRole('textbox');
+
+    fireEvent.change(inputs[0], { target: { value: 2.3 } });
+    fireEvent.change(inputs[1], { target: { value: 1.4 } });
+    fireEvent.change(inputs[2], { target: { value: 1 } });
+
+    const errorMessage = getByText(/\*a parede deve ser no mínimo 30 centímetros mais alta que a janela/i);
 
     expect(errorMessage).toBeInTheDocument();
   });
