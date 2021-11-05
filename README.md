@@ -7,6 +7,11 @@
 - Permita calcular a quantidade de tinta necessária para pintar uma sala
 - Tenha uma arquitetura que permita crescimento e futuras implementações
 
+## Descrição do projeto
+A aplicação foi desenvolvida utilizando Programação Funcional e Hooks. Foi incluído React Router para permitir navegação entre páginas em futuras implementações.
+O padrão de código adotado foi o Airbnb e possui Eslint configurado para garantir sua aplicação.
+Foi utilizada a biblioteca React Testing Library para aplicação de testes.
+
 ## Funcionamento
 
 - As paredes pode ter entre 1 a 15 metros de altura e largura
@@ -33,12 +38,6 @@ npm install
 ```
 npm start
 ```
-
-## Descrição do projeto
-A aplicação foi desenvolvida utilizando Programação Funcional e Hooks. Foi incluído React Router para permitir navegação entre páginas em futuras implementações.
-O padrão de código adotado foi o Airbnb e possui Eslint configurado para garantir sua aplicação.
-Foi utilizada a biblioteca React Testing Library para aplicação de testes.
-
 
 ## Deploy da aplicação
 
