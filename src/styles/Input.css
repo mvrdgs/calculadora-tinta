@@ -1,0 +1,16 @@
+.calculator-input {
+  border-color: #039;
+  border-radius: 5px;
+  border-width: 0.15rem;
+  color: #039;
+  text-align: center;
+  width: 2rem;
+}
+
+.calculator-label {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  padding: 0;
+  width: 15rem;
+}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { string, func, objectOf } from 'prop-types';
 import { inputPattern } from '../utils/schemas';
 import Input from './Input';
+import '../styles/WallForm.css';
 
 function WallForm(props) {
   const {
@@ -22,8 +23,8 @@ function WallForm(props) {
   };
 
   return (
-    <div>
-      <span>{ identifier }</span>
+    <div className="wallform-container">
+      <h2 className="wall-title">{ identifier }</h2>
       <Input
         label="Largura"
         id="width"
@@ -49,7 +50,7 @@ function WallForm(props) {
         handleChange={handleChange}
       />
       { error && (
-        <div>
+        <div className="error-message">
           <span>{`*${error}`}</span>
         </div>
       )}

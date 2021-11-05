@@ -1,0 +1,14 @@
+.wall-title {
+  font-size: 1.3rem;
+}
+
+.wallform-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error-message {
+  color: #f03;
+  text-align: center;
+}

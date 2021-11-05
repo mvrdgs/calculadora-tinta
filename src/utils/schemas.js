@@ -13,15 +13,15 @@ const wallSchema = {
 };
 
 export const roomDataSchema = {
-  'Parede 1': wallSchema,
-  'Parede 2': wallSchema,
-  'Parede 3': wallSchema,
-  'Parede 4': wallSchema,
+  'Parede A': wallSchema,
+  'Parede B': wallSchema,
+  'Parede C': wallSchema,
+  'Parede D': wallSchema,
 };
 
 export const errorsSchema = {
-  'Parede 1': null,
-  'Parede 2': null,
-  'Parede 3': null,
-  'Parede 4': null,
+  'Parede A': null,
+  'Parede B': null,
+  'Parede C': null,
+  'Parede D': null,
 };

@@ -4,6 +4,7 @@ import validateWallParameters from '../utils/validateWallParameters';
 import DisplayResults from '../components/DisplayResults';
 import WallForm from '../components/WallForm';
 import calculateArea from '../utils/calculateArea';
+import '../styles/Calculator.css';
 
 function Calculator() {
   const [roomData, setRoomData] = useState(roomDataSchema);
@@ -41,7 +42,7 @@ function Calculator() {
   };
 
   return (
-    <div>
+    <div className="calculator-container">
       { results.length === 0 && (
         <>
           { numberOfWalls.map((wall) => (
@@ -54,7 +55,14 @@ function Calculator() {
             />
           )) }
 
-          <button onClick={handleSubmit} type="button">Calcular</button>
+          <button
+            className="button"
+            onClick={handleSubmit}
+            type="button"
+          >
+            Calcular
+
+          </button>
         </>
       )}
 

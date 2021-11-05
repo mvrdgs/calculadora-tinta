@@ -1,0 +1,22 @@
+.calculator-container {
+  color: #063797;
+  background-color: white;
+  border-radius: 5px;
+  min-height: 80vh;
+  margin: 0 auto;
+  padding: 10px;
+  width: 260px;
+}
+
+.button {
+  background-color: #039;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  display: block;
+  font-size: 1.2rem;
+  margin: 1rem auto;
+  padding: 8px;
+  text-decoration: none;
+  width: 12rem;
+}

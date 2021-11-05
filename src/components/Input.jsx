@@ -1,5 +1,6 @@
 import React from 'react';
 import { string, func, objectOf } from 'prop-types';
+import '../styles/Input.css';
 
 function Input(props) {
   const {
@@ -7,13 +8,18 @@ function Input(props) {
   } = props;
 
   return (
-    <label htmlFor={id}>
+    <label
+      className="calculator-label"
+      htmlFor={id}
+    >
       {`${label}:`}
       <input
         id={id}
+        className="calculator-input"
         type="text"
         value={wallData[id]}
         onChange={handleChange}
+        autoComplete="off"
       />
     </label>
   );
