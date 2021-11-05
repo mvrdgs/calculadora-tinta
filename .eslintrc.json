@@ -20,7 +20,10 @@
     "rules": {
         "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/tests/**/**.jsx", "**/*.test.jsx"]}],
         "react/no-array-index-key": 0,
-        "no-loop-func": 0
+        "no-loop-func": 0,
+        "linebreak-style": 0,
+        " global-require ": 0,
+        " eslint linebreak-style ": [0," error "," windows "]
     },
     "overrides": [
         {
