@@ -6,7 +6,7 @@ import renderTest from './renderWithRouter';
 import Calculator from '../views/Calculator';
 
 const formParameters = [
-  12, 5, 2, 2, 15, 1, 1, 0, 5, 15, 0, 2, 14, 3, 0, 0,
+  12, 5, 2, 2, 10, 1.5, 1, 0, 5, 15, 0, 2, 14, 3, 0, 0,
 ];
 
 describe('1 - Testa se a aplicação retornar os valores esperados', () => {
@@ -28,38 +28,38 @@ describe('1 - Testa se a aplicação retornar os valores esperados', () => {
     expect(paintCanGallons).toBeInTheDocument();
   });
 
-  it('Deve retornar 11.48 de área a ser pintada e sugerir 1 lata de 2.5L', () => {
-    const { getAllByRole, getByRole, getByText } = renderTest(<Calculator />);
-
-    const inputs = getAllByRole('textbox');
-    const submitButton = getByRole('button', { name: /calcular/i });
-
-    fireEvent.change(inputs[0], { target: { value: 5 } });
-    fireEvent.change(inputs[1], { target: { value: 2 } });
-    fireEvent.change(inputs[3], { target: { value: 1 } });
-
-    fireEvent.click(submitButton);
-
-    const correctResult = getByText(/11.48 metros/i);
-    const paintCanLarge = getByText(/1 lata de 2.5l/i);
-
-    expect(correctResult).toBeInTheDocument();
-    expect(paintCanLarge).toBeInTheDocument();
-  });
-
-  it('Deve retornar 9.48 de área a ser pintada e sugerir 4 latas de 0.5L', () => {
+  it('Deve retornar 10.28 de área a ser pintada e sugerir 1 lata de 2.5L', () => {
     const { getAllByRole, getByRole, getByText } = renderTest(<Calculator />);
 
     const inputs = getAllByRole('textbox');
     const submitButton = getByRole('button', { name: /calcular/i });
 
     fireEvent.change(inputs[0], { target: { value: 4 } });
-    fireEvent.change(inputs[1], { target: { value: 2 } });
+    fireEvent.change(inputs[1], { target: { value: 2.2 } });
     fireEvent.change(inputs[3], { target: { value: 1 } });
 
     fireEvent.click(submitButton);
 
-    const correctResult = getByText(/9.48 metros/i);
+    const correctResult = getByText(/10.28 metros/i);
+    const paintCanLarge = getByText(/1 lata de 2.5l/i);
+
+    expect(correctResult).toBeInTheDocument();
+    expect(paintCanLarge).toBeInTheDocument();
+  });
+
+  it('Deve retornar 8.08 de área a ser pintada e sugerir 4 latas de 0.5L', () => {
+    const { getAllByRole, getByRole, getByText } = renderTest(<Calculator />);
+
+    const inputs = getAllByRole('textbox');
+    const submitButton = getByRole('button', { name: /calcular/i });
+
+    fireEvent.change(inputs[0], { target: { value: 3 } });
+    fireEvent.change(inputs[1], { target: { value: 2.2 } });
+    fireEvent.change(inputs[3], { target: { value: 1 } });
+
+    fireEvent.click(submitButton);
+
+    const correctResult = getByText(/8.08 metros/i);
     const paintCanLarge = getByText(/4 latas de 0.5l/i);
 
     expect(correctResult).toBeInTheDocument();
@@ -98,7 +98,7 @@ describe('2 - Testa se a aplicação gera os erros corretamente', () => {
     const inputs = getAllByRole('textbox');
 
     fireEvent.change(inputs[8], { target: { value: 5 } });
-    fireEvent.change(inputs[9], { target: { value: 2 } });
+    fireEvent.change(inputs[9], { target: { value: 2.2 } });
     fireEvent.change(inputs[10], { target: { value: 2 } });
     fireEvent.change(inputs[11], { target: { value: 1 } });
 
