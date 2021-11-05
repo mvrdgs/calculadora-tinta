@@ -15,10 +15,10 @@ function WallForm(props) {
   }, [wallData]);
 
   const handleChange = async ({ target }) => {
-    const { id, value } = target;
+    const { name, value } = target;
 
-    if (inputPattern[id].test(value)) {
-      setWallData({ ...wallData, [id]: value });
+    if (inputPattern[name].test(value)) {
+      setWallData({ ...wallData, [name]: value });
     }
   };
 
@@ -27,25 +27,29 @@ function WallForm(props) {
       <h2 className="wall-title">{ identifier }</h2>
       <Input
         label="Largura"
-        id="width"
+        name="width"
+        identifier={identifier.trim()}
         wallData={wallData}
         handleChange={handleChange}
       />
       <Input
         label="Altura"
-        id="height"
+        name="height"
+        identifier={identifier.trim()}
         wallData={wallData}
         handleChange={handleChange}
       />
       <Input
         label="Quantidade de janelas"
-        id="windows"
+        name="windows"
+        identifier={identifier}
         wallData={wallData}
         handleChange={handleChange}
       />
       <Input
         label="Quantidade de portas"
-        id="doors"
+        name="doors"
+        identifier={identifier.trim()}
         wallData={wallData}
         handleChange={handleChange}
       />

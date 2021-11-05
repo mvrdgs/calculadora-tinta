@@ -4,20 +4,21 @@ import '../styles/Input.css';
 
 function Input(props) {
   const {
-    wallData, id, label, handleChange,
+    wallData, name, label, handleChange, identifier,
   } = props;
 
   return (
     <label
       className="calculator-label"
-      htmlFor={id}
+      htmlFor={`${identifier}-${name}`}
     >
       {`${label}:`}
       <input
-        id={id}
+        id={`${identifier}-${name}`}
+        name={name}
         className="calculator-input"
         type="text"
-        value={wallData[id]}
+        value={wallData[name]}
         onChange={handleChange}
         autoComplete="off"
       />
