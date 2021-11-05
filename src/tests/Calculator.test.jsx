@@ -10,7 +10,7 @@ const formParameters = [
 ];
 
 describe('1 - Testa se a aplicação retornar os valores esperados', () => {
-  it('Deve retornar 178.72 de área a ser pintada e as sugestões corretas de latas', () => {
+  it('Deve retornar 178.72 de área a ser pintada e sugerir 2 latas de 18L', () => {
     const { getAllByRole, getByRole, getByText } = renderTest(<Calculator />);
 
     const inputs = getAllByRole('textbox');
@@ -22,16 +22,48 @@ describe('1 - Testa se a aplicação retornar os valores esperados', () => {
     fireEvent.click(submitButton);
 
     const correctResult = getByText(/178.72 metros/i);
-    const paintCanGallon = getByText(/1 lata de 18l/i);
-    const paintCanLarge = getByText(/4 latas de 3.6l/i);
-    const paintCanMedium = getByText(/1 lata de 2.5l/i);
-    const paintCanSmall = getByText(/2 latas de 0.5l/i);
+    const paintCanGallons = getByText(/2 latas de 18l/i);
 
     expect(correctResult).toBeInTheDocument();
-    expect(paintCanGallon).toBeInTheDocument();
+    expect(paintCanGallons).toBeInTheDocument();
+  });
+
+  it('Deve retornar 11.48 de área a ser pintada e sugerir 1 lata de 2.5L', () => {
+    const { getAllByRole, getByRole, getByText } = renderTest(<Calculator />);
+
+    const inputs = getAllByRole('textbox');
+    const submitButton = getByRole('button', { name: /calcular/i });
+
+    fireEvent.change(inputs[0], { target: { value: 5 } });
+    fireEvent.change(inputs[1], { target: { value: 2 } });
+    fireEvent.change(inputs[3], { target: { value: 1 } });
+
+    fireEvent.click(submitButton);
+
+    const correctResult = getByText(/11.48 metros/i);
+    const paintCanLarge = getByText(/1 lata de 2.5l/i);
+
+    expect(correctResult).toBeInTheDocument();
     expect(paintCanLarge).toBeInTheDocument();
-    expect(paintCanMedium).toBeInTheDocument();
-    expect(paintCanSmall).toBeInTheDocument();
+  });
+
+  it('Deve retornar 9.48 de área a ser pintada e sugerir 4 latas de 0.5L', () => {
+    const { getAllByRole, getByRole, getByText } = renderTest(<Calculator />);
+
+    const inputs = getAllByRole('textbox');
+    const submitButton = getByRole('button', { name: /calcular/i });
+
+    fireEvent.change(inputs[0], { target: { value: 4 } });
+    fireEvent.change(inputs[1], { target: { value: 2 } });
+    fireEvent.change(inputs[3], { target: { value: 1 } });
+
+    fireEvent.click(submitButton);
+
+    const correctResult = getByText(/9.48 metros/i);
+    const paintCanLarge = getByText(/4 latas de 0.5l/i);
+
+    expect(correctResult).toBeInTheDocument();
+    expect(paintCanLarge).toBeInTheDocument();
   });
 });
 

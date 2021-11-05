@@ -29,7 +29,7 @@ const getSuggestedPaintCans = (area) => {
   do {
     const suggestedCan = paintCanOptions
       .sort((a, b) => b - a)
-      .find((can) => paintLiters >= can);
+      .find((can) => paintLiters + 0.5 >= can);
 
     if (!suggestedCan && paintLiters > 0) {
       if (suggestedPaintCans['0.5']) {
