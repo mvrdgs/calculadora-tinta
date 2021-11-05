@@ -1,8 +1,8 @@
 export const inputPattern = {
   width: /^\d{0,2}(?:[.]\d{0,2})?$/,
   height: /^\d{0,2}(?:[.]\d{0,2})?$/,
-  windows: /^\d?$/,
-  doors: /^\d?$/,
+  windows: /^\d{0,2}?$/,
+  doors: /^\d{0,2}?$/,
 };
 
 const wallSchema = {
