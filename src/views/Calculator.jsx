@@ -15,14 +15,16 @@ function Calculator() {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    setErrors(errorsSchema);
+    const updatedErrors = { ...errorsSchema };
 
     const roomDataKeys = Object.keys(roomData);
 
     roomDataKeys.forEach((wallKey) => {
       const error = validateWallParameters(roomData[wallKey]);
-      if (error) setErrors({ ...errors, [wallKey]: error });
+      updatedErrors[wallKey] = error;
     });
+
+    setErrors({ ...updatedErrors });
   }, [roomData]);
 
   const checkErrors = () => {
