@@ -39,6 +39,15 @@ npm install
 npm start
 ```
 
+## Como rodar testes
+
+- Acesse a pasta do projeto pelo terminal
+- Utilize o seguinte script:
+
+```
+npm test
+```
+
 ## Deploy da aplicação
 
 - [Calculadora de tinta para pintura de salas](https://calculadora-tintas.herokuapp.com/calculadora)
